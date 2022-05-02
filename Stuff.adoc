@@ -82,3 +82,101 @@ After searching for available clients select one by clicking on it to begin usin
 
 
 == Installation of DNS RPZ
+After the basic DNS setting have been configured on DC1 following the UTLG Guide, you can begin setting up DNS RPZ.
+
+. First, edit the named.conf.options file.
++
+`sudo nano /etc/bind/named.conf.options`
+
+.. Add the following lines in the options {...} clause to enable response policy zone. (The first line is a comment.)
++
+```
+//enable response policy zone. 
+response-policy { 
+    zone "rpz.local"; 
+};
+```
+
+. Save and close the file. Then open the named.conf.local file.
++
+`sudo nano /etc/bind/named.conf.local`
+
+.. Add an RPZ zone in this file.
++
+```
+zone "rpz.local" {
+    type master;
+    file "/etc/bind/db.rpz.local";
+    allow-query { localhost; };
+    allow-transfer { localhost; };
+};
+```
+
+. Save and close the file. Then we need to create the zone file. Instead of creating a zone file from scratch, we can use a zone template file. Copy the content of db.empty to a new file.
++
+`sudo cp /etc/bind/db.empty /etc/bind/db.rpz.local`
+
+. Then edit the db.rpz file.
++
+
+`sudo nano /etc/bind/db.rpz.local`
+
+.. There is no need to change the existing content. We just add our custom DNS records. For instance, if you have a Nextcloud server on the local network with an IP address 192.168.0.103, then you add the following DNS record, so Nextcloud clients don’t have to go out to the Internet in order to connect to the Nextcloud server.
++
+`nextcloud.your-domain.com      A   192.168.0.103`
+
+. Save and close the file. It’s recommended to use a separate log file for RPZ to better analyze the log. To configure, edit the BIND main configuration file.
++
+
+.. Add the following lines to the file.
++
+```
+logging {
+    channel rpzlog {
+  	file "/var/log/named/rpz.log" versions unlimited size 100m;
+    	print-time yes;
+    	print-category yes;
+    	print-severity yes;
+    	severity info;
+    };
+    category rpz { rpzlog; };
+};
+```
+
+. Save and close the file. Then create the /var/log/named/ directory and make bind as the owner.
++
+
+```
+sudo mkdir /var/log/named/
+sudo chown bind:bind /var/log/named/ -R
+```
+
+. Restart bind9
+
+`sudo systemctl restart bind9`
+
+== Testing DNS RPZ
+. Add any domains you want blocked to the /etc/bind/db.rpz.local file with the following format.
++
+
+```
+example.com A 127.0.0.1
+*.example.com A 127.0.0.1
+```
+
+. Every time you add a new domain to this file after saving and exiting you will need to restart bind9.
++ 
+
+`sudo systemctl restart bind9`
+
+. To test if the domains have been successfully blocked or not you can ping the domain on dc1 and you should receive responses from the localhost 127.0.0.1 instead of the actual blocked domain.
++
+
+`ping example.com -c 3`
+
+image::DC1Ping.PNG[DC1 Ping Test, align="center"]
+
+
+You can also test this by opening a browser on client1 and attempting to browse to the blocked domain. You should get an Unable to connect error.
+
+image::ClientRPZ.PNG[Client1 Browser Test, align="center"]
