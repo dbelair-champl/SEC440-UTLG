@@ -6,7 +6,28 @@ This document is designed to be used in tandem with the Unix Test Lab Guide (TLG
 
 == Installation of Archery
 
-. Stuff
+. Archery itself can be quickly set up and installed using a Docker image, but it has multiple requirement softwares that will need to be installed as well. To get the Docker image up and running, you will first need to update your apt library and install Docker:
++
+```
+sudo apt-get update
+sudo apt-get install docker.io
+```
+. After docker has finished installing pull the Archery image.
++
+`sudo docker pull archerysec/archerysec`
+
+. Once the pull has been completed, initialize the image with docker run to get the Archery WebUI up and running.
++
+```
+docker run -e NAME=user -e EMAIL=user@user.com -e PASSWORD=admin@123A  -it -p  8000:8000 archerysec/archerysec:latest
+```
+. Next you will need to install and setup at least one of the required scanner softwares such as OpenVAS, Owasp ZAP, or Burp.
+ 
+== Testing of Archery
+
+. On your client1 device, open a webbrowser and browse to the ip of your archery host server on port 8000.
+
+. Log in using the email and password you provided in the docker run command during setup.
 
 == Installation of GRR Rapid Response
 
