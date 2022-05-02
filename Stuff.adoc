@@ -81,7 +81,7 @@ After searching for available clients select one by clicking on it to begin usin
 > The Statistics page lets you see everything that has been done in GRR Server like Cron Jobs and Hunts that have been approved and run. You can also view how many clients have been active and connected to GRR Server at a given time and what Flows have been run by the System or individual Users.
 
 
-== Installation of DNS RPZ
+== Configuration of DNS RPZ
 After the basic DNS setting have been configured on DC1 following the UTLG Guide, you can begin setting up DNS RPZ.
 
 . First, edit the named.conf.options file.
