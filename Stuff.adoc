@@ -50,6 +50,8 @@ java --version
  
 == Testing of Archery
 
+*Connecting the Scanner*
+
 . On your client1 device, open a webbrowser and browse to the ip of your archery host server on port 8000.
 +
 
@@ -66,6 +68,16 @@ java --version
 +
 
 . Back on the Connectors page you should now see one entry, the OWASP ZAP connecter that was just set up and it should have a status of Connected.
+
+*Projects and Scans*
+
+. Go back to the Archery WebUI dashboard and create a project to start running scans for. Select the Add Project button and give your new project a name and description.
++
+
+. Now, on the sidebar of the Archery WebUI select the Launch Scans dropdown and select Dynamic Scans. Enter any URLs you want to scan, assign the scan to your newly created project and select the ZAP Scanner from the Scanners section at the bottom of the page. Select the Launch button to begin your scan.
++
+
+. Select the Scans dropdown on the Archery WebUI sidebar and select Dynamic Scans. Here you can see the results of the scan you just launched.
 
 == Installation of GRR Rapid Response
 
