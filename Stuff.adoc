@@ -1,0 +1,15 @@
+:toc: left
+= Test Lab Guide: Ubuntu 20.04 - Archery, GRR, & DNS RPZ
+
+== Introduction
+This document is designed to be used in tandem with the Unix Test Lab Guide (TLG) for Ubuntu 20.04. It contains instructions on how to install, configure, and test Archery, GRR Rapid Response, and DNS RPZ. This guide will provide the user a step-by-step guide, upon completion of which will allow them to build their skills for use in future labs or activities. All configuration steps for Archery and GRR should be done on the Applications Server system unless otherwise noted. All configuration steps for DNS RPZ should be done on the Domain Controller system unless otherwise noted.
+
+== Installation of Archery
+
+. Stuff
+
+== Installation of GRR Rapid Response
+
+. Stuff
+
+== Installation of DNS RPZ
