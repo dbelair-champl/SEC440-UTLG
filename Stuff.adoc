@@ -10,6 +10,75 @@ This document is designed to be used in tandem with the Unix Test Lab Guide (TLG
 
 == Installation of GRR Rapid Response
 
-. Stuff
+The easiest and quickest way to install and set up GRR for testing purposes is with a Docker image.
+
+. Update your apt library and install Docker:
++
+```
+sudo apt-get update
+sudo apt-get install docker.io
+```
+. After docker has finished installing pull the GRR image.
++
+`sudo docker pull grrdocker/grr:latest`
+
+. Once the pull has been completed, initialize the image with docker run to begin testing with GRR.
++
+```
+sudo docker run --name grr-server -e EXTERNAL_HOSTNAME="GRR Host Server IP" -e ADMIN_PASSWORD=demo -p 0.0.0.0:8000:8000 -p 0.0.0.0:8080:8080 grrdocker/grr:latest
+```
+
+. Once the initialization has finished you will be able to access the GRR Server WebUI from your Ubuntu Client by browsing to the ip of your GRR host server on port 8000. When you are prompted for login information use the username "admin" and the password "demo".
++
+
+In order to start testing with the newly setup GRR Server, you will have to setup a GRR Client to communicate with the server.
+
+. On your Ubuntu Client, after browsing to your GRR Server WebUI, go to the Binaries page under Configuration.
++
+. Download the .deb file onto the Ubuntu Client.
++
+. Open a terminal and install the client .deb file you just downloaded.
++
+```
+cd Downloads
+sudo dpkg -i grr_3.4_6.0_amd64.deb
+```
+. After installation completes, ensure that the GRR Client is now communicating with the GRR Server by going back to the WebUI and hitting the search magnifying glass while leaving the Search Box blank. This will list all connected GRR Clients and you should be able to see the single GRR Client you just setup.
+
+== Testing of GRR Rapid Response
+*Client Features*
+
+After searching for available clients select one by clicking on it to begin using client features.
+
+. Host Information
++
+
+> The simplest Client Feature of GRR is being able to view the host information for your client devices. This will list things like the Client's Operating System and when it was installed, Architecture, Memory Size, and interfaces.
+
+. Virtual Filesystem Browsing
++
+
+> GRR allows you to browse a virtual filesystem of all your clients so you can look through every directory and file on the device.
+
+. Flows
+
+> You can run Flows on specific clients to find all sorts of information about it from browser histories, to file types, to active network connections and many more. Flows need to be created on the start new flows page and then they can be managed while they are running or completed on the Manage Launched Flows page where you can view the flow results.
+
+*Server Features*
+
+. Hunts
++
+
+> Hunts are essentially Flows that you can run on multiple clients at the same time. All of the information to search for in Hunts are the same as Flows, but you can set rules to determine which clients will be a part of the hunt based on variables like operating system or labels.
+
+. Cron Jobs
++
+
+> With the Crob Jobs feature you can schedule Hunts to be done in the future and setup periodic Hunts.
+
+. Statistics
+
+> The Statistics page lets you see everything that has been done in GRR Server like Cron Jobs and Hunts that have been approved and run. You can also view how many clients have been active and connected to GRR Server at a given time and what Flows have been run by the System or individual Users.
+
 
 == Installation of DNS RPZ
