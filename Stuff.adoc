@@ -77,7 +77,7 @@ java --version
 . Now, on the sidebar of the Archery WebUI select the Launch Scans dropdown and select Dynamic Scans. Enter any URLs you want to scan, assign the scan to your newly created project and select the ZAP Scanner from the Scanners section at the bottom of the page. Select the Launch button to begin your scan.
 +
 
-. Select the Scans dropdown on the Archery WebUI sidebar and select Dynamic Scans. Here you can see the results of the scan you just launched.
+. Select the Scans dropdown on the Archery WebUI sidebar and select Dynamic Scans. Here you can see the results of the scan you just launched. The project dashboard will also be updated with the results from the scan.
 
 == Installation of GRR Rapid Response
 
