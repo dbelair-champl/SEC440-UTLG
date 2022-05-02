@@ -51,8 +51,21 @@ java --version
 == Testing of Archery
 
 . On your client1 device, open a webbrowser and browse to the ip of your archery host server on port 8000.
++
 
 . Log in using the email and password you provided in the docker run command during setup.
++
+
+. Go into Settings and to the Connectors page.
++
+
+. Select the Add Connector dropdown and select OWASP ZAP.
++
+
+. Turn the Enable API switch to on, leave the API key blank, set the Zap API Host to the IP of your application machine that is hosting ZAP, set the Zap API Port to 8080, and select Save.
++
+
+. Back on the Connectors page you should now see one entry, the OWASP ZAP connecter that was just set up and it should have a status of Connected.
 
 == Installation of GRR Rapid Response
 
