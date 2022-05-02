@@ -219,8 +219,8 @@ sudo chown bind:bind /var/log/named/ -R
 +
 
 ```
-example.com A 127.0.0.1
-*.example.com A 127.0.0.1
+coolmathgames.com A 127.0.0.1
+*.coolmathgames.com A 127.0.0.1
 ```
 
 . Every time you add a new domain to this file after saving and exiting you will need to restart bind9.
