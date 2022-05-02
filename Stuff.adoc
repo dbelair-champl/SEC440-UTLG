@@ -19,9 +19,34 @@ sudo apt-get install docker.io
 . Once the pull has been completed, initialize the image with docker run to get the Archery WebUI up and running.
 +
 ```
-docker run -e NAME=user -e EMAIL=user@user.com -e PASSWORD=admin@123A  -it -p  8000:8000 archerysec/archerysec:latest
+sudo docker run -e NAME=user -e EMAIL=user@user.com -e PASSWORD=admin@123A  -it -p  8000:8000 archerysec/archerysec:latest
 ```
-. Next you will need to install and setup at least one of the required scanner softwares such as OpenVAS, Owasp ZAP, or Burp.
+. Next you will need to install and setup at least one of the required scanner softwares such as OpenVAS, Owasp ZAP, or Burp. For the purposes of this testing I will be installing ZAP. Use wget to download the .tar.gz file from the official OWASP ZAP webpage.
++
+`sudo wget github.com/zaproxy/zaproxy/releases/download/v2.11.1/ZAP_2.11.1_Linux.tar.gz`
+
+. When the file has finished downloading, unpack it.
++
+`sudo vzf ZAP_2.11.1_Linux.tar.gz`
+
+. cd into the newly unpacked directory.
++
+`cd ZAP_2.11.1_Linux.tar.gz`
+
+. Make sure the zap.sh file has execute permission.
++
+`sudo  +x zap.sh`
+
+. Before ZAP can be ran, java will need to be installed. Install java and test that it is above version 8.
++
+```
+sudo apt-get install default-jre
+java --version
+```
+ 
+. Run the zap.sh script with -daemon so it will run headless.
+ 
+`sudo .sh -daemon`
  
 == Testing of Archery
 
