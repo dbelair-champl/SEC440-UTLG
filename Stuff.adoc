@@ -155,7 +155,7 @@ sudo chown bind:bind /var/log/named/ -R
 
 `sudo systemctl restart bind9`
 
-== Testing DNS RPZ
+== Testing of DNS RPZ
 . Add any domains you want blocked to the /etc/bind/db.rpz.local file with the following format.
 +
 
